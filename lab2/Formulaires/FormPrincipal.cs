@@ -57,5 +57,17 @@ namespace lab2
                 System.Windows.Forms.MessageBox.Show("Le fichier de noms d'équipe est introuvable!");
             }
         }
+
+        private void menuSauvegarder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnManip_Click(object sender, EventArgs e)
+        {
+            Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures();
+
+            f.ShowDialog();
+        }
     }
 }

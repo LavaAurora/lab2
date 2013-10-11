@@ -52,6 +52,12 @@
     <Compile Include="Classes\FactureEpicerie.cs" />
     <Compile Include="Classes\Factures.cs" />
     <Compile Include="Classes\FactureUniversite.cs" />
+    <Compile Include="Formulaires\FormManipulationFactures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FormManipulationFactures.Designer.cs">
+      <DependentUpon>FormManipulationFactures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulaires\FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     <Compile Include="Classes\IArticle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formulaires\FormManipulationFactures.resx">
+      <DependentUpon>FormManipulationFactures.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formulaires\FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
