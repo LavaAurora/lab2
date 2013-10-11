@@ -23,7 +23,22 @@ namespace lab2
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            InitialiserDataGridViewFactures();
+        }
 
+        private void InitialiserDataGridViewFactures()
+        {
+            bindingSourceFactures.DataSource = factures.ListeFactures;
+            dataGridViewFactures.Columns[0].DataPropertyName = "IdFacture";
+            dataGridViewFactures.Columns[1].DataPropertyName = "Description";
+            dataGridViewFactures.DataSource = bindingSourceFactures;
+            bindingSourceFactures.ResetBindings(false);
+
+            foreach (DataGridViewRow row in dataGridViewFactures.Rows)
+            {
+                row.Cells[2].Value = factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerNbArticle();
+                //row.Cells[3].Value = 3;
+            }
         }
 
         private void rEADMEToolStripMenuItem_Click(object sender, EventArgs e)
