@@ -111,6 +111,16 @@ namespace lab2
             //TODO : créer cette méthode
         }
 
+        public decimal RetournerTotalAvecTaxes()
+        {
+            decimal tempTotal = 0;
+            foreach (Article article in articles)
+            {
+                tempTotal += article.CalculerTotalAvecTaxes();
+            }
+            return tempTotal;
+        }
+
         //Surcharge pour addition de facture
         public static Facture operator +(Facture f1, Facture f2)
         {

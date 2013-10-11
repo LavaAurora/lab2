@@ -295,7 +295,7 @@
             // 
             // cTotal
             // 
-            this.cTotal.HeaderText = "Total";
+            this.cTotal.HeaderText = "Total $";
             this.cTotal.Name = "cTotal";
             // 
             // FormPrincipal
