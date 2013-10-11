@@ -37,7 +37,7 @@ namespace lab2
             foreach (DataGridViewRow row in dataGridViewFactures.Rows)
             {
                 row.Cells[2].Value = factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerNbArticle();
-                //row.Cells[3].Value = 3;
+                row.Cells[3].Value = factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerTotalAvecTaxes();
             }
         }
 
