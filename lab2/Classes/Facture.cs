@@ -112,34 +112,34 @@ namespace lab2
         }
 
         //Surcharge pour addition de facture
-        /*public static Facture operator +(Facture f1, Facture f2)
+        public static Facture operator +(Facture f1, Facture f2)
         {
             Hashtable tempTable = new Hashtable();
-            Article tempArticle = new Article();
-            FactureEpicerie f3 = new FactureEpicerie();
+            Facture f3 = f1 as Facture;
 
             //ajouter tout les articles de la liste1
             foreach (Article a in f1.Articles)
-                tempTable.Add(a.IdArticle, a);
+                tempTable.Add(a.Description + a.PrixUnitaire.ToString(), a);
 
             foreach (Article a in f2.Articles)
             {
                 //si article existe, additionner la quantité
-                if (tempTable.Contains(a.IdArticle))
+                if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
                 {
-                    (tempTable[a.IdArticle] as Article).Quantite += a.Quantite;
-                    //tempArticle = tempTable[a.IdArticle] as Article;
-                    //f3.Quantite += tempArticle.Quantite;
+                    (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite += a.Quantite;
                 }
                 else
-                    tempTable.Add(a.IdArticle, a);
+                    tempTable.Add(a.Description + a.PrixUnitaire.ToString(), a);
             }
 
-            f3.Articles = tempTable.Values as List<Article>;
+            Article[] t = new Article[tempTable.Values.Count];
+            tempTable.Values.CopyTo(t, 0);
+
+            f3.Articles = t.ToList();
 
             return f3;
 
-        }*/
+        }
 
     }
 }

@@ -49,10 +49,6 @@ namespace lab2
             set { this.typeTaxe = value; }
         }
 
-        public Article() 
-        {
-        }
-
         //Crée un article (ne provenant pas d'un fichier)
         public Article(string description, int quantite, decimal prixUnitaire, string typeTaxe)
         {

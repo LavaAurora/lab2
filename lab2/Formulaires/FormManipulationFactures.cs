@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -123,15 +124,20 @@ namespace lab2.Formulaires
             if ((sender as ComboBox).SelectedIndex > 0)
             {
                 viderListes();
-
-                //ajouter chaque facture du type choisi
-                foreach (Facture f in this.factures.ListeFactures)
-                    if (f.GetType().Name.ToString() == (sender as ComboBox).SelectedValue.ToString())
-                        listeTous.Items.Add(f);
-
-                //listeTous.Items.AddRange(lFacturesTous.ToArray());
-
+                RafraichirFacturesListeTous();
             }
+        }
+
+        private void RafraichirFacturesListeTous()
+        {
+            //ajouter chaque facture du type choisi
+            foreach (Facture f in this.factures.ListeFactures)
+                if (f.GetType().Name.ToString() == cmbTypeFacture.SelectedValue.ToString()
+                    && listeTous.Items.Contains(f) == false
+                    && liste1.Items.Contains(f) == false
+                    && liste2.Items.Contains(f) == false)
+                    listeTous.Items.Add(f);
+
         }
 
         private void viderListes()
@@ -162,6 +168,58 @@ namespace lab2.Formulaires
                 foreach (Article a in f.Articles)
                     srcDetails2.Add(a);
             }
+        }
+
+        private void btnAsoustraireFacture_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAjoutFacture_Click_1(object sender, EventArgs e)
+        {
+
+            Facture temp1 = CreerFactureTemporaire("");
+            Facture temp2 = CreerFactureTemporaire("");
+            Facture temp3 = CreerFactureTemporaire("Nouvelle facture");
+
+            foreach (Facture f in liste1.Items)
+                temp1 = temp1 + f;
+
+            foreach (Facture f in liste2.Items)
+                temp2 = temp2 + f;
+
+            temp3 = temp1 + temp2;
+
+            this.factures.AjouterFacture(temp3.GetType().Name.ToString(), "Nouvelle facture");
+            this.factures.ListeFactures[this.factures.ListeFactures.Count - 1].Articles = temp3.Articles;
+
+            RafraichirFacturesListeTous();
+        }
+
+        // instancie une facture selon le type choisi
+        private Facture CreerFactureTemporaire(string desc)
+        {
+            Facture f = null;
+
+            if (cmbTypeFacture.SelectedIndex == 1)
+                f = new FactureCable(desc);
+            else if (cmbTypeFacture.SelectedIndex == 2)
+                f = new FactureEpicerie(desc);
+            else if (cmbTypeFacture.SelectedIndex == 3)
+                f = new FactureUniversite(desc);
+
+            return f;
+        }
+
+        private void btnRetirer_Click(object sender, EventArgs e)
+        {
+            if (liste1.SelectedIndices.Count > 0)
+                TransfertListe(liste1, listeTous);
+
+            if (liste2.SelectedIndices.Count > 0)
+                TransfertListe(liste2, listeTous);
+
+            ChargerGrilleDetails();
         }
 
     }

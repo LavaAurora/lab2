@@ -61,6 +61,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.srcDetails2 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRetirer = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -231,6 +232,7 @@
             this.btnAsoustraireFacture.TabIndex = 6;
             this.btnAsoustraireFacture.Text = "Soustraire";
             this.btnAsoustraireFacture.UseVisualStyleBackColor = true;
+            this.btnAsoustraireFacture.Click += new System.EventHandler(this.btnAsoustraireFacture_Click);
             // 
             // btnAjoutFacture
             // 
@@ -240,6 +242,7 @@
             this.btnAjoutFacture.TabIndex = 5;
             this.btnAjoutFacture.Text = "Ajouter";
             this.btnAjoutFacture.UseVisualStyleBackColor = true;
+            this.btnAjoutFacture.Click += new System.EventHandler(this.btnAjoutFacture_Click_1);
             // 
             // grilleDetails1
             // 
@@ -344,11 +347,22 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Taxe";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // btnRetirer
+            // 
+            this.btnRetirer.Location = new System.Drawing.Point(771, 161);
+            this.btnRetirer.Name = "btnRetirer";
+            this.btnRetirer.Size = new System.Drawing.Size(75, 23);
+            this.btnRetirer.TabIndex = 10;
+            this.btnRetirer.Text = "Retirer";
+            this.btnRetirer.UseVisualStyleBackColor = true;
+            this.btnRetirer.Click += new System.EventHandler(this.btnRetirer_Click);
+            // 
             // FormManipulationFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 897);
+            this.Controls.Add(this.btnRetirer);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -408,5 +422,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn prix;
         private System.Windows.Forms.DataGridViewTextBoxColumn taxe;
         private System.Windows.Forms.BindingSource srcDetails2;
+        private System.Windows.Forms.Button btnRetirer;
     }
 }
