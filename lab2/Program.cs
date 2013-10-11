@@ -62,6 +62,28 @@ namespace lab2
                 f.CreerArticle("Dépassement consomation (gig)", 53, 1.23m, "F");
             }
 
+            factures.AjouterFacture("FactureEpicerie", "Fromagerie");
+            {
+                f = factures.ChercherFacture(5004);
+                f.CreerArticle("Oranges à Joe", 156, 1.2m, "");
+                f.CreerArticle("Salade", 2, 0.98m, "");
+                f.CreerArticle("Pommes", 12, 1.59m, "");
+                f.CreerArticle("Tomates", 2, 0.89m, "");
+                f.CreerArticle("Patate", 2, 0.89m, "");
+                f.CreerArticle("Poire", 2, 0.89m, "");
+
+            }
+
+            factures.AjouterFacture("FactureEpicerie", "Poissonier");
+            {
+                f = factures.ChercherFacture(5005);
+                f.CreerArticle("Poire", 156, 1.2m, "");
+                f.CreerArticle("Pommes", 2, 0.98m, "");
+                f.CreerArticle("Fraises", 12, 1.59m, "");
+                f.CreerArticle("Citrons", 2, 0.89m, "");
+
+            }
+
             
 
             //Console.WriteLine("Il y a " + factures.ListeFactures.Count + " factures au total!");

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,9 +61,6 @@ namespace lab2
         }
 
 
-
-
-
         /**
          * Méthodes provenant de l'interface IArticle
          * 
@@ -113,6 +111,35 @@ namespace lab2
             //TODO : créer cette méthode
         }
 
+        //Surcharge pour addition de facture
+        /*public static Facture operator +(Facture f1, Facture f2)
+        {
+            Hashtable tempTable = new Hashtable();
+            Article tempArticle = new Article();
+            FactureEpicerie f3 = new FactureEpicerie();
+
+            //ajouter tout les articles de la liste1
+            foreach (Article a in f1.Articles)
+                tempTable.Add(a.IdArticle, a);
+
+            foreach (Article a in f2.Articles)
+            {
+                //si article existe, additionner la quantité
+                if (tempTable.Contains(a.IdArticle))
+                {
+                    (tempTable[a.IdArticle] as Article).Quantite += a.Quantite;
+                    //tempArticle = tempTable[a.IdArticle] as Article;
+                    //f3.Quantite += tempArticle.Quantite;
+                }
+                else
+                    tempTable.Add(a.IdArticle, a);
+            }
+
+            f3.Articles = tempTable.Values as List<Article>;
+
+            return f3;
+
+        }*/
 
     }
 }

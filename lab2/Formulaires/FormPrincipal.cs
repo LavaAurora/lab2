@@ -65,7 +65,7 @@ namespace lab2
 
         private void btnManip_Click(object sender, EventArgs e)
         {
-            Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures();
+            Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures(this.factures);
 
             f.ShowDialog();
         }
