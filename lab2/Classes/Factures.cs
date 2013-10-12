@@ -87,5 +87,19 @@ namespace lab2
                 }
             }
         }
+
+        public Article ChercherArticle(int idArticle)
+        {
+            Article tempArticle;
+            foreach (Facture facture in listeFactures)
+            {
+                tempArticle = facture.ChercherArticle(idArticle);
+                if (tempArticle != null)
+                {
+                    return tempArticle;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -53,7 +53,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonRetirerArticle = new System.Windows.Forms.Button();
             this.dataGridViewArticles = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -185,6 +185,7 @@
             this.btnRetirerFacture.TabIndex = 1;
             this.btnRetirerFacture.Text = "Retirer";
             this.btnRetirerFacture.UseVisualStyleBackColor = true;
+            this.btnRetirerFacture.Click += new System.EventHandler(this.btnRetirerFacture_Click);
             // 
             // dataGridViewFactures
             // 
@@ -236,7 +237,7 @@
             this.groupBoxArticles.Controls.Add(this.textBox1);
             this.groupBoxArticles.Controls.Add(this.button2);
             this.groupBoxArticles.Controls.Add(this.button3);
-            this.groupBoxArticles.Controls.Add(this.button4);
+            this.groupBoxArticles.Controls.Add(this.buttonRetirerArticle);
             this.groupBoxArticles.Controls.Add(this.dataGridViewArticles);
             this.groupBoxArticles.Location = new System.Drawing.Point(12, 242);
             this.groupBoxArticles.Name = "groupBoxArticles";
@@ -258,6 +259,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(819, 179);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
             // 
@@ -279,14 +281,15 @@
             this.button3.Text = "Modifier";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonRetirerArticle
             // 
-            this.button4.Location = new System.Drawing.Point(6, 179);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Retirer";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonRetirerArticle.Location = new System.Drawing.Point(6, 179);
+            this.buttonRetirerArticle.Name = "buttonRetirerArticle";
+            this.buttonRetirerArticle.Size = new System.Drawing.Size(75, 23);
+            this.buttonRetirerArticle.TabIndex = 1;
+            this.buttonRetirerArticle.Text = "Retirer";
+            this.buttonRetirerArticle.UseVisualStyleBackColor = true;
+            this.buttonRetirerArticle.Click += new System.EventHandler(this.buttonRetirerArticle_Click);
             // 
             // dataGridViewArticles
             // 
@@ -309,7 +312,6 @@
             this.dataGridViewArticles.ReadOnly = true;
             this.dataGridViewArticles.Size = new System.Drawing.Size(919, 157);
             this.dataGridViewArticles.TabIndex = 0;
-            this.dataGridViewArticles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArticles_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -397,7 +399,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonRetirerArticle;
         private System.Windows.Forms.DataGridView dataGridViewArticles;
         private System.Windows.Forms.BindingSource bindingSourceFactures;
         private System.Windows.Forms.BindingSource bindingSourceArticles;
