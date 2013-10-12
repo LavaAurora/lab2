@@ -129,7 +129,7 @@ namespace lab2
 
             //ajouter tout les articles de la liste1
             foreach (Article a in f1.Articles)
-                tempTable.Add(a.Description + a.PrixUnitaire.ToString(), a);
+                tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe) );
 
             foreach (Article a in f2.Articles)
             {
@@ -139,7 +139,38 @@ namespace lab2
                     (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite += a.Quantite;
                 }
                 else
-                    tempTable.Add(a.Description + a.PrixUnitaire.ToString(), a);
+                    tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe));
+            }
+
+            Article[] t = new Article[tempTable.Values.Count];
+            tempTable.Values.CopyTo(t, 0);
+
+            f3.Articles = t.ToList();
+
+            return f3;
+
+        }
+
+        //Surcharge pour soustraction de facture
+        public static Facture operator -(Facture f1, Facture f2)
+        {
+            Hashtable tempTable = new Hashtable();
+            Facture f3 = f1 as Facture;
+
+            //ajouter tout les articles de la facture1
+            foreach (Article a in f1.Articles)
+                tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe));
+
+            foreach (Article a in f2.Articles)
+            {
+                //si article existe, soustraire la quantité
+                if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
+                {
+                    //si la différence entre les quantités es supérieur à 0, ajouter à la table 
+                    if ( ((tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite - a.Quantite) > 0)
+                        (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite -= a.Quantite;
+                }
+
             }
 
             Article[] t = new Article[tempTable.Values.Count];

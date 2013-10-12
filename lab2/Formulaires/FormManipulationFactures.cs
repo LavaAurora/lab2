@@ -32,23 +32,12 @@ namespace lab2.Formulaires
             cmbTypeFacture.DisplayMember = "Value";
             cmbTypeFacture.ValueMember = "Key";
 
-            ///////////////////////////////////////////////////
-            //TEMPO
-            ///////////////////////////////////////////////////
-            //foreach(Facture f in this.factures.ListeFactures)
-              //  lFactures1.Add(f);
-
-            //liste1.Items.AddRange(lFactures1.ToArray());
-
-            //srcList1.DataSource = lFactures1;
-
-            ///////////////////////////////////////////////////
-            //FIN TEMPO
-            ///////////////////////////////////////////////////
-
             listeTous.DisplayMember = "description";
             liste1.DisplayMember = "description";
             liste2.DisplayMember = "description";
+
+            grilleNouvFacture.Columns[0].DataPropertyName = "IdFacture";
+            grilleNouvFacture.Columns[1].DataPropertyName = "Description";
 
             setProprieteGrilleDetails(grilleDetails1);
             setProprieteGrilleDetails(grilleDetails2);
@@ -170,30 +159,57 @@ namespace lab2.Formulaires
             }
         }
 
-        private void btnAsoustraireFacture_Click(object sender, EventArgs e)
+        private void btnSoustraireFacture_Click(object sender, EventArgs e)
         {
-
+            if (liste2.Items.Count > 0)
+                ManipulerFacture(false);
+            else
+                MessageBox.Show("Veuillez spécifier au moins une facture à soustraire dans la liste2.");
         }
 
         private void btnAjoutFacture_Click_1(object sender, EventArgs e)
         {
+            if (liste1.Items.Count > 0)
+                ManipulerFacture(true);
+            else
+                MessageBox.Show("Veuillez spécifier au moins une facture à additioner dans la liste1.");
+        }
 
-            Facture temp1 = CreerFactureTemporaire("");
-            Facture temp2 = CreerFactureTemporaire("");
-            Facture temp3 = CreerFactureTemporaire("Nouvelle facture");
+        private void ManipulerFacture(bool additioner)
+        {
+            if (txtFactureNom.Text.Length > 0)
+            {
+                Facture temp1 = CreerFactureTemporaire("");
+                Facture temp2 = CreerFactureTemporaire("");
+                Facture temp3 = CreerFactureTemporaire("");
 
-            foreach (Facture f in liste1.Items)
-                temp1 = temp1 + f;
+                foreach (Facture f in liste1.Items)
+                    temp1 = temp1 + f;
 
-            foreach (Facture f in liste2.Items)
-                temp2 = temp2 + f;
+                foreach (Facture f in liste2.Items)
+                    temp2 = temp2 + f;
 
-            temp3 = temp1 + temp2;
+                if (additioner)
+                    temp3 = temp1 + temp2;
+                else
+                    temp3 = temp1 - temp2;
 
-            this.factures.AjouterFacture(temp3.GetType().Name.ToString(), "Nouvelle facture");
-            this.factures.ListeFactures[this.factures.ListeFactures.Count - 1].Articles = temp3.Articles;
+                this.factures.AjouterFacture(temp3.GetType().Name.ToString(), txtFactureNom.Text);
+                this.factures.ListeFactures[this.factures.ListeFactures.Count - 1].Articles = temp3.Articles;
 
-            RafraichirFacturesListeTous();
+                srcNouvelleFacture.Add(this.factures.ListeFactures[this.factures.ListeFactures.Count - 1]);
+
+                foreach (DataGridViewRow row in grilleNouvFacture.Rows)
+                {
+                    row.Cells[2].Value = this.factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerNbArticle();
+                    row.Cells[3].Value = this.factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerTotalAvecTaxes();
+                }
+
+                RafraichirFacturesListeTous();
+                txtFactureNom.Text = "";
+            }
+            else
+                MessageBox.Show("Veuillez décrire la nouvelle facture.");
         }
 
         // instancie une facture selon le type choisi
