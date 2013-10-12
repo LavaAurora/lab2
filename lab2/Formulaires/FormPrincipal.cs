@@ -27,7 +27,7 @@ namespace lab2
             InitialiserDataGridViewArticles();
         }
 
-        private void InitialiserDataGridViewFactures()
+        public void InitialiserDataGridViewFactures()
         {
             bindingSourceFactures.DataSource = factures.ListeFactures;
             dataGridViewFactures.Columns[0].DataPropertyName = "IdFacture";
@@ -120,5 +120,11 @@ namespace lab2
         {
 
         }
+
+        private void FormPrincipal_Activated(object sender, EventArgs e)
+        {
+            this.InitialiserDataGridViewFactures();
+        }
+
     }
 }

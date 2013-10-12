@@ -55,13 +55,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridViewArticles = new System.Windows.Forms.DataGridView();
-            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cQuantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPrixUnitaire = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTypeTaxe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
             this.menu.SuspendLayout();
             this.groupBoxFactures.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFactures)).BeginInit();
@@ -360,6 +360,7 @@
             this.MainMenuStrip = this.menu;
             this.Name = "FormPrincipal";
             this.Text = "Gestion de factures";
+            this.Activated += new System.EventHandler(this.FormPrincipal_Activated);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
