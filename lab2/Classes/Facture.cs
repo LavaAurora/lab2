@@ -111,6 +111,7 @@ namespace lab2
             //TODO : créer cette méthode
         }
 
+        //Retourne le total d'argent de tous les articles de la facture
         public decimal RetournerTotalAvecTaxes()
         {
             decimal tempTotal = 0;
@@ -119,6 +120,21 @@ namespace lab2
                 tempTotal += article.CalculerTotalAvecTaxes();
             }
             return tempTotal;
+        }
+
+        //Retourne un article en fonction de son identifiant
+        //Si l'article n'est pas trouvée, la fonction retourne null
+        public Article ChercherArticle(int idArticle)
+        {
+            foreach (Article article in articles)
+            {
+                if (article.IdArticle == idArticle)
+                {
+                    return article;
+                }
+            }
+
+            return null;
         }
 
         //Surcharge pour addition de facture

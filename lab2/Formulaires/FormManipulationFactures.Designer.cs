@@ -43,8 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTypeFacture = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtFactureNom = new System.Windows.Forms.TextBox();
             this.grilleDetails2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +50,9 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.srcDetails2 = new System.Windows.Forms.BindingSource(this.components);
+            this.srcDetails1 = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnSoustraireFacture = new System.Windows.Forms.Button();
             this.btnAjoutFacture = new System.Windows.Forms.Button();
             this.grilleDetails1 = new System.Windows.Forms.DataGridView();
@@ -75,6 +76,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilleDetails2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srcDetails2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srcDetails1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grilleDetails1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.srcDetails1)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -234,7 +236,48 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Détails des factures";
             // 
-            // label2
+            // grilleDetails2
+            // 
+            this.grilleDetails2.AutoGenerateColumns = false;
+            this.grilleDetails2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grilleDetails2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilleDetails2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.grilleDetails2.DataSource = this.srcDetails2;
+            this.grilleDetails2.Location = new System.Drawing.Point(552, 16);
+            this.grilleDetails2.Name = "grilleDetails2";
+            this.grilleDetails2.Size = new System.Drawing.Size(491, 295);
+            this.grilleDetails2.TabIndex = 7;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "# article";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Article";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Qté Liste2";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Prix Unitaire";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Taxe";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(549, 323);
@@ -368,7 +411,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.grilleNouvFacture);
+            this.groupBox5.Controls.Add(this.dataGridView2);
             this.groupBox5.Location = new System.Drawing.Point(21, 579);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(1049, 264);
@@ -376,14 +419,14 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Nouvelles factures";
             // 
-            // grilleNouvFacture
+            // dataGridView2
             // 
-            this.grilleNouvFacture.AutoGenerateColumns = false;
-            this.grilleNouvFacture.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.grilleNouvFacture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grilleNouvFacture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idFacture,
-            this.nfDescription,
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1043, 245);
+            this.dataGridView2.TabIndex = 0;
             this.articles,
             this.nfTtl});
             this.grilleNouvFacture.DataSource = this.srcNouvelleFacture;
@@ -393,23 +436,8 @@
             this.grilleNouvFacture.ReadOnly = true;
             this.grilleNouvFacture.Size = new System.Drawing.Size(1043, 245);
             this.grilleNouvFacture.TabIndex = 0;
-            // 
-            // idFacture
-            // 
-            this.idFacture.HeaderText = "# facture";
-            this.idFacture.Name = "idFacture";
             this.idFacture.ReadOnly = true;
-            // 
-            // nfDescription
-            // 
-            this.nfDescription.HeaderText = "Description";
-            this.nfDescription.Name = "nfDescription";
             this.nfDescription.ReadOnly = true;
-            // 
-            // articles
-            // 
-            this.articles.HeaderText = "Nb. articles";
-            this.articles.Name = "articles";
             this.articles.ReadOnly = true;
             // 
             // nfTtl
@@ -447,14 +475,15 @@
             this.Name = "FormManipulationFactures";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manipulation de factures";
+            this.Load += new System.EventHandler(this.FormManipulationFactures_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilleDetails2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srcDetails2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srcDetails1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grilleDetails1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.srcDetails1)).EndInit();
             this.groupBox5.ResumeLayout(false);

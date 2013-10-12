@@ -43,27 +43,31 @@
             this.btnModifierFacture = new System.Windows.Forms.Button();
             this.btnRetirerFacture = new System.Windows.Forms.Button();
             this.dataGridViewFactures = new System.Windows.Forms.DataGridView();
-            this.groupBoxArticles = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dataGridViewArticles = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bindingSourceFactures = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
             this.cNoFacture = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cNbArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceFactures = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBoxArticles = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridViewArticles = new System.Windows.Forms.DataGridView();
+            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cQuantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPrixUnitaire = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTypeTaxe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menu.SuspendLayout();
             this.groupBoxFactures.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFactures)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFactures)).BeginInit();
             this.groupBoxArticles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFactures)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArticles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,7 +188,10 @@
             // 
             // dataGridViewFactures
             // 
+            this.dataGridViewFactures.AllowUserToAddRows = false;
+            this.dataGridViewFactures.AllowUserToDeleteRows = false;
             this.dataGridViewFactures.AutoGenerateColumns = false;
+            this.dataGridViewFactures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewFactures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFactures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cNoFacture,
@@ -192,11 +199,36 @@
             this.cNbArticle,
             this.cTotal});
             this.dataGridViewFactures.DataSource = this.bindingSourceFactures;
-            this.dataGridViewFactures.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewFactures.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewFactures.Name = "dataGridViewFactures";
+            this.dataGridViewFactures.ReadOnly = true;
             this.dataGridViewFactures.Size = new System.Drawing.Size(919, 157);
             this.dataGridViewFactures.TabIndex = 0;
+            this.dataGridViewFactures.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewFactures_RowHeaderMouseClick);
+            // 
+            // cNoFacture
+            // 
+            this.cNoFacture.HeaderText = "No. facture";
+            this.cNoFacture.Name = "cNoFacture";
+            this.cNoFacture.ReadOnly = true;
+            // 
+            // cDescription
+            // 
+            this.cDescription.HeaderText = "Description";
+            this.cDescription.Name = "cDescription";
+            this.cDescription.ReadOnly = true;
+            // 
+            // cNbArticle
+            // 
+            this.cNbArticle.HeaderText = "Nb. d\'article";
+            this.cNbArticle.Name = "cNbArticle";
+            this.cNbArticle.ReadOnly = true;
+            // 
+            // cTotal
+            // 
+            this.cTotal.HeaderText = "Total $";
+            this.cTotal.Name = "cTotal";
+            this.cTotal.ReadOnly = true;
             // 
             // groupBoxArticles
             // 
@@ -212,6 +244,22 @@
             this.groupBoxArticles.TabIndex = 2;
             this.groupBoxArticles.TabStop = false;
             this.groupBoxArticles.Text = "Articles";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(776, 184);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Total :";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(819, 179);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
             // 
             // button2
             // 
@@ -242,61 +290,64 @@
             // 
             // dataGridViewArticles
             // 
+            this.dataGridViewArticles.AllowUserToAddRows = false;
+            this.dataGridViewArticles.AllowUserToDeleteRows = false;
+            this.dataGridViewArticles.AutoGenerateColumns = false;
+            this.dataGridViewArticles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewArticles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewArticles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewTextBoxColumn2,
+            this.cQuantite,
+            this.cPrixUnitaire,
+            this.cTypeTaxe,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewArticles.DataSource = this.bindingSourceArticles;
             this.dataGridViewArticles.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewArticles.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewArticles.Name = "dataGridViewArticles";
+            this.dataGridViewArticles.ReadOnly = true;
             this.dataGridViewArticles.Size = new System.Drawing.Size(919, 157);
             this.dataGridViewArticles.TabIndex = 0;
+            this.dataGridViewArticles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArticles_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Factures no.";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "cNoArticle";
+            this.dataGridViewTextBoxColumn1.HeaderText = "No. article";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "cDescription";
             this.dataGridViewTextBoxColumn2.HeaderText = "Description";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // textBox1
+            // cQuantite
             // 
-            this.textBox1.Location = new System.Drawing.Point(819, 179);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
+            this.cQuantite.HeaderText = "Quantité";
+            this.cQuantite.Name = "cQuantite";
+            this.cQuantite.ReadOnly = true;
             // 
-            // label1
+            // cPrixUnitaire
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(776, 184);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Total :";
+            this.cPrixUnitaire.HeaderText = "Prix unitaire";
+            this.cPrixUnitaire.Name = "cPrixUnitaire";
+            this.cPrixUnitaire.ReadOnly = true;
             // 
-            // cNoFacture
+            // cTypeTaxe
             // 
-            this.cNoFacture.HeaderText = "No. facture";
-            this.cNoFacture.Name = "cNoFacture";
+            this.cTypeTaxe.HeaderText = "Type de taxe";
+            this.cTypeTaxe.Name = "cTypeTaxe";
+            this.cTypeTaxe.ReadOnly = true;
             // 
-            // cDescription
+            // dataGridViewTextBoxColumn3
             // 
-            this.cDescription.HeaderText = "Description";
-            this.cDescription.Name = "cDescription";
-            // 
-            // cNbArticle
-            // 
-            this.cNbArticle.HeaderText = "Nb. d\'article";
-            this.cNbArticle.Name = "cNbArticle";
-            // 
-            // cTotal
-            // 
-            this.cTotal.HeaderText = "Total $";
-            this.cTotal.Name = "cTotal";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Total $";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // FormPrincipal
             // 
@@ -314,10 +365,10 @@
             this.menu.PerformLayout();
             this.groupBoxFactures.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFactures)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFactures)).EndInit();
             this.groupBoxArticles.ResumeLayout(false);
             this.groupBoxArticles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFactures)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArticles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -347,14 +398,18 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridViewArticles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.BindingSource bindingSourceFactures;
         private System.Windows.Forms.BindingSource bindingSourceArticles;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNoFacture;
         private System.Windows.Forms.DataGridViewTextBoxColumn cDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNbArticle;
         private System.Windows.Forms.DataGridViewTextBoxColumn cTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cQuantite;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPrixUnitaire;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeTaxe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
 

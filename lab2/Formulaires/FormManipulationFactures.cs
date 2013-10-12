@@ -238,5 +238,10 @@ namespace lab2.Formulaires
             ChargerGrilleDetails();
         }
 
+        private void FormManipulationFactures_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

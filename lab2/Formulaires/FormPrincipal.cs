@@ -24,6 +24,7 @@ namespace lab2
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             InitialiserDataGridViewFactures();
+            InitialiserDataGridViewArticles();
         }
 
         private void InitialiserDataGridViewFactures()
@@ -39,6 +40,17 @@ namespace lab2
                 row.Cells[2].Value = factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerNbArticle();
                 row.Cells[3].Value = factures.ChercherFacture(int.Parse(row.Cells[0].Value.ToString())).RetournerTotalAvecTaxes();
             }
+        }
+
+        private void InitialiserDataGridViewArticles()
+        {
+            dataGridViewArticles.Columns[0].DataPropertyName = "IdArticle";
+            dataGridViewArticles.Columns[1].DataPropertyName = "Description";
+            dataGridViewArticles.Columns[2].DataPropertyName = "Quantite";
+            dataGridViewArticles.Columns[3].DataPropertyName = "PrixUnitaire";
+            dataGridViewArticles.Columns[4].DataPropertyName = "TypeTaxe";
+            dataGridViewArticles.DataSource = bindingSourceArticles;
+            bindingSourceArticles.ResetBindings(false);
         }
 
         private void rEADMEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,6 +95,30 @@ namespace lab2
             Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures(this.factures);
 
             f.ShowDialog();
+        }
+
+        private void dataGridViewFactures_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dataGridViewArticles.Rows.Clear();
+            foreach (DataGridViewRow rowFacture in dataGridViewFactures.SelectedRows)
+            {
+                foreach (Article article in factures.ChercherFacture(int.Parse(rowFacture.Cells[0].Value.ToString())).Articles)
+                {
+                    bindingSourceArticles.Add(article);
+                    dataGridViewArticles.Refresh();
+
+                    //Assigne la colonne "Total $" du dataGridViewArticles au total d'un article d'une facture
+                    dataGridViewArticles.Rows[dataGridViewArticles.Rows.Count - 1].Cells[5].Value = //Colonne "Total $"
+                        factures.ChercherFacture(int.Parse(rowFacture.Cells[0].Value.ToString())).  //Trouver la facture
+                        ChercherArticle(int.Parse(dataGridViewArticles.Rows[dataGridViewArticles.Rows.Count - 1].Cells[0].Value.ToString())). //Trouver l'article
+                        CalculerTotalAvecTaxes(); //Calculer le total $
+                }
+            }
+        }
+
+        private void dataGridViewArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
