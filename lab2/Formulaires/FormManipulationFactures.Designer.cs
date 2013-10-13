@@ -369,9 +369,9 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.grilleNouvFacture);
-            this.groupBox5.Location = new System.Drawing.Point(21, 579);
+            this.groupBox5.Location = new System.Drawing.Point(12, 579);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1049, 264);
+            this.groupBox5.Size = new System.Drawing.Size(1058, 264);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Nouvelles factures";
@@ -391,7 +391,7 @@
             this.grilleNouvFacture.Location = new System.Drawing.Point(3, 16);
             this.grilleNouvFacture.Name = "grilleNouvFacture";
             this.grilleNouvFacture.ReadOnly = true;
-            this.grilleNouvFacture.Size = new System.Drawing.Size(1043, 245);
+            this.grilleNouvFacture.Size = new System.Drawing.Size(1052, 245);
             this.grilleNouvFacture.TabIndex = 0;
             // 
             // idFacture

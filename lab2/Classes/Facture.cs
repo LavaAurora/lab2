@@ -140,27 +140,29 @@ namespace lab2
         //Surcharge pour addition de facture
         public static Facture operator +(Facture f1, Facture f2)
         {
-            Hashtable tempTable = new Hashtable();
-            Facture f3 = f1 as Facture;
+            Hashtable tempTable = new Hashtable();          // table temporaire qui contient les articles
+            Facture f3 = f1 as Facture;                     // valeur de retour
 
-            //ajouter tout les articles de la liste1
+            // ajouter tous les articles de la 1ere facture
             foreach (Article a in f1.Articles)
                 tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe) );
 
+            // parcourir tous les articles de la 2e facture
             foreach (Article a in f2.Articles)
             {
-                //si article existe, additionner la quantité
+                //si article existe dans la table, additionner la quantité
                 if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
-                {
                     (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite += a.Quantite;
-                }
+                // sinon, ajouter le nouvel article
                 else
                     tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe));
             }
 
+            // convertir le Hashtable en tableau
             Article[] t = new Article[tempTable.Values.Count];
             tempTable.Values.CopyTo(t, 0);
 
+            // convertir le tableau en liste
             f3.Articles = t.ToList();
 
             return f3;
@@ -170,8 +172,8 @@ namespace lab2
         //Surcharge pour soustraction de facture
         public static Facture operator -(Facture f1, Facture f2)
         {
-            Hashtable tempTable = new Hashtable();
-            Facture f3 = f1 as Facture;
+            Hashtable tempTable = new Hashtable();          // table temporaire qui contient les articles
+            Facture f3 = f1 as Facture;                     // valeur de retour
 
             //ajouter tout les articles de la facture1
             foreach (Article a in f1.Articles)
@@ -179,19 +181,24 @@ namespace lab2
 
             foreach (Article a in f2.Articles)
             {
-                //si article existe, soustraire la quantité
+                //si article existe dans la table
                 if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
                 {
-                    //si la différence entre les quantités es supérieur à 0, ajouter à la table 
+                    // si la différence entre les quantités est supérieure à 0, ajouter à la table 
                     if ( ((tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite - a.Quantite) > 0)
                         (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite -= a.Quantite;
+                    // sinon quantité = 0
+                    else
+                        (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite = 0;
                 }
 
             }
 
+            // convertir le Hashtable en tableau
             Article[] t = new Article[tempTable.Values.Count];
             tempTable.Values.CopyTo(t, 0);
 
+            // convertir le tableau en liste
             f3.Articles = t.ToList();
 
             return f3;

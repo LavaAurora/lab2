@@ -13,17 +13,16 @@ namespace lab2.Formulaires
     public partial class FormManipulationFactures : Form
     {
         private Factures factures;
-        private List<Facture> lFacturesTous = new List<Facture>();
-        private List<Facture> lFactures1 = new List<Facture>();
-        private List<Facture> lFactures2 = new List<Facture>();
         private Dictionary<string, string> dcTypeFacture = new Dictionary<string, string>();
 
         public FormManipulationFactures(Factures fac)
         { 
             InitializeComponent();
 
+            // liste des factures globales
             this.factures = fac;
 
+            // initialisation du dictionnaire de type de facture
             dcTypeFacture.Add("", "");
             dcTypeFacture.Add("FactureCable", "Câble");
             dcTypeFacture.Add("FactureEpicerie", "Épicerie");
@@ -44,6 +43,7 @@ namespace lab2.Formulaires
 
         }
 
+        // associe les colonnes de la grille avec les propriétés des factures
         private void setProprieteGrilleDetails(DataGridView d)
         {
             d.Columns[0].DataPropertyName = "idArticle";
@@ -53,6 +53,7 @@ namespace lab2.Formulaires
             d.Columns[4].DataPropertyName = "typeTaxe";
         }
 
+        // fermer le formulaire
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -66,6 +67,7 @@ namespace lab2.Formulaires
             ChargerGrilleDetails();
         }
 
+        //transfert de la liste2 vers la liste1
         private void btnList2ToList1_Click(object sender, EventArgs e)
         {
             TransfertListe(liste2, liste1);
@@ -100,26 +102,21 @@ namespace lab2.Formulaires
             (to as ListBox).Items.AddRange(sItems);
 
         }
-
-        private void btnAjoutFacture_Click(object sender, EventArgs e)
-        {
-
-        }
-
         
         //peupler liste1 selon type de facture
         private void cmbTypeFacture_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((sender as ComboBox).SelectedIndex > 0)
             {
-                viderListes();
+                ViderListes();
                 RafraichirFacturesListeTous();
             }
         }
 
+        //ajouter chaque facture du type choisi
         private void RafraichirFacturesListeTous()
         {
-            //ajouter chaque facture du type choisi
+            // ajout des factures si elles ne sont pas déjà dans les listes
             foreach (Facture f in this.factures.ListeFactures)
                 if (f.GetType().Name.ToString() == cmbTypeFacture.SelectedValue.ToString()
                     && listeTous.Items.Contains(f) == false
@@ -129,14 +126,11 @@ namespace lab2.Formulaires
 
         }
 
-        private void viderListes()
+        //vide les listes
+        private void ViderListes()
         {
-            //vider les listes
             listeTous.Items.Clear();
-            lFacturesTous.Clear();
-            lFactures1.Clear();
             liste1.Items.Clear();
-            lFactures2.Clear();
             liste2.Items.Clear();
         }
 
@@ -146,12 +140,14 @@ namespace lab2.Formulaires
             srcDetails1.Clear();
             srcDetails2.Clear();
 
+            // parcours de la liste1
             foreach (Facture f in liste1.Items)
             {
                 foreach (Article a in f.Articles)
                     srcDetails1.Add(a);     
             }
 
+            // parcours de la liste2
             foreach (Facture f in liste2.Items)
             {
                 foreach (Article a in f.Articles)
@@ -159,38 +155,52 @@ namespace lab2.Formulaires
             }
         }
 
+        // appel de méthode pour soustraire les factures
         private void btnSoustraireFacture_Click(object sender, EventArgs e)
         {
+            // s'il y a au moins une facture dans la liste2
             if (liste2.Items.Count > 0)
                 ManipulerFacture(false);
+            // sinon erreur
             else
                 MessageBox.Show("Veuillez spécifier au moins une facture à soustraire dans la liste2.");
         }
 
+        // appel de méthode pour additionner les factures
         private void btnAjoutFacture_Click_1(object sender, EventArgs e)
         {
+            // s'il y a au moins une facture dans la liste1
             if (liste1.Items.Count > 0)
                 ManipulerFacture(true);
+            // sinon erreur
             else
                 MessageBox.Show("Veuillez spécifier au moins une facture à additioner dans la liste1.");
         }
 
+
+        // addition ou soustraction de facture
         private void ManipulerFacture(bool additioner)
         {
+            // s'assurer que la nouvelle facture à une description
             if (txtFactureNom.Text.Length > 0)
             {
                 Facture temp1 = CreerFactureTemporaire("");
                 Facture temp2 = CreerFactureTemporaire("");
                 Facture temp3 = CreerFactureTemporaire("");
 
+                // addition des factures de la liste1
                 foreach (Facture f in liste1.Items)
                     temp1 = temp1 + f;
 
+                // addition des factures de la liste2
                 foreach (Facture f in liste2.Items)
                     temp2 = temp2 + f;
 
+                // selon le choix
+                // additioner les factures
                 if (additioner)
                     temp3 = temp1 + temp2;
+                // soustraire les factures
                 else
                     temp3 = temp1 - temp2;
 
@@ -227,6 +237,7 @@ namespace lab2.Formulaires
             return f;
         }
 
+        // retire une facture de la liste1 ou liste2 et la transfert dans la listeTous
         private void btnRetirer_Click(object sender, EventArgs e)
         {
             if (liste1.SelectedIndices.Count > 0)

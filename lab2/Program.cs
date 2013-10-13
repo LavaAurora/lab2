@@ -93,6 +93,19 @@ namespace lab2
 
             }
 
+
+            factures.AjouterFacture("FactureEpicerie", "Facture4");
+            {
+                f = factures.ChercherFacture(5007);
+                f.CreerArticle("Poire", 3, 1.2m, "");
+            }
+
+            factures.AjouterFacture("FactureEpicerie", "Facture5");
+            {
+                f = factures.ChercherFacture(5008);
+                f.CreerArticle("Poire", 5, 1.2m, "");
+
+            }
             
 
             //Console.WriteLine("Il y a " + factures.ListeFactures.Count + " factures au total!");
