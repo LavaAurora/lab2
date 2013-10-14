@@ -50,7 +50,7 @@
             this.bindingSourceFactures = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxArticles = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxTotalArticles = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.buttonRetirerArticle = new System.Windows.Forms.Button();
@@ -234,7 +234,7 @@
             // groupBoxArticles
             // 
             this.groupBoxArticles.Controls.Add(this.label1);
-            this.groupBoxArticles.Controls.Add(this.textBox1);
+            this.groupBoxArticles.Controls.Add(this.textBoxTotalArticles);
             this.groupBoxArticles.Controls.Add(this.button2);
             this.groupBoxArticles.Controls.Add(this.button3);
             this.groupBoxArticles.Controls.Add(this.buttonRetirerArticle);
@@ -255,13 +255,13 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Total :";
             // 
-            // textBox1
+            // textBoxTotalArticles
             // 
-            this.textBox1.Location = new System.Drawing.Point(819, 179);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
+            this.textBoxTotalArticles.Location = new System.Drawing.Point(819, 179);
+            this.textBoxTotalArticles.Name = "textBoxTotalArticles";
+            this.textBoxTotalArticles.ReadOnly = true;
+            this.textBoxTotalArticles.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTotalArticles.TabIndex = 4;
             // 
             // button2
             // 
@@ -396,7 +396,7 @@
         private System.Windows.Forms.DataGridView dataGridViewFactures;
         private System.Windows.Forms.GroupBox groupBoxArticles;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxTotalArticles;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button buttonRetirerArticle;

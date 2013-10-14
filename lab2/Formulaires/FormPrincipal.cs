@@ -118,6 +118,7 @@ namespace lab2
                         CalculerTotalAvecTaxes(); //Calculer le total $
                 }
             }
+            CalculerTotalArticles();
         }
 
         private void FormPrincipal_Activated(object sender, EventArgs e)
@@ -141,6 +142,7 @@ namespace lab2
             bindingSourceFactures.ResumeBinding();
             InitialiserDataGridViewFactures();
             dataGridViewArticles.Rows.Clear();
+            CalculerTotalArticles();
         }
 
         private void buttonRetirerArticle_Click(object sender, EventArgs e)
@@ -150,6 +152,7 @@ namespace lab2
             foreach (DataGridViewRow row in dataGridViewArticles.SelectedRows)
             {
                 listeIdArticle.Add(int.Parse(row.Cells[0].Value.ToString()));
+                row.Cells[5].Value = 0;
                 row.Visible = false;
             }
             foreach (int articleId in listeIdArticle)
@@ -158,8 +161,8 @@ namespace lab2
             }
             bindingSourceArticles.ResumeBinding();
             dataGridViewArticles.Refresh();
-
             InitialiserDataGridViewFactures();
+            CalculerTotalArticles();
         }
 
         private int TrouverFactureIdDeArticle(int articleId)
@@ -181,6 +184,16 @@ namespace lab2
                 }
             }
             return 0;
+        }
+
+        private void CalculerTotalArticles()
+        {
+            decimal tempTotalArticle = 0;
+            foreach(DataGridViewRow row in dataGridViewArticles.Rows)
+            {
+                tempTotalArticle += decimal.Parse(row.Cells[5].Value.ToString());
+            }
+            textBoxTotalArticles.Text = tempTotalArticle.ToString();
         }
 
     }
