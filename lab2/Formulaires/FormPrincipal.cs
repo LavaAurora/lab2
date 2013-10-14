@@ -119,56 +119,18 @@ namespace lab2
         private void FormPrincipal_Activated(object sender, EventArgs e)
         {
             this.InitialiserDataGridViewFactures();
+            InitialiserDataGridViewFactures();
         }
 
         private void btnRetirerFacture_Click(object sender, EventArgs e)
         {
-            // NE PAS EFFACER - PARTIE À JOE À CONTINUER...
-            /*for (int i = dataGridViewFactures.SelectedRows.Count - 1; i >= 0; i--)
+            bindingSourceFactures.SuspendBinding();
+            foreach (DataGridViewRow row in dataGridViewFactures.SelectedRows)
             {
-                factures.RetirerFacture(int.Parse(dataGridViewFactures.SelectedRows[i].Cells[0].Value.ToString()));
-            }*/
-
-            // NE PAS EFFACER - PARTIE À JOE À CONTINUER...
-            /*** *** ***
-            int tempMaxIndex = dataGridViewFactures.SelectedRows.Count - 1;
-
-            while (tempMaxIndex >= 0)
-            {
-                for (int i = tempMaxIndex; i >= 0; i--)
-                {
-                    if (tempMaxIndex == dataGridViewFactures.SelectedRows[i].Index)
-                    {
-                        factures.RetirerFacture(int.Parse(dataGridViewFactures.SelectedRows[i].Cells[0].Value.ToString()));
-                    }
-                    break;
-                }
-                tempMaxIndex--;
+                factures.RetirerFacture(int.Parse(row.Cells[0].Value.ToString()));
             }
+            bindingSourceFactures.ResumeBinding();
             InitialiserDataGridViewFactures();
-            dataGridViewArticles.Rows.Clear();
-            *** *** ***/
-            // NE PAS EFFACER - PARTIE À JOE À CONTINUER...
-
-            /*foreach (DataGridViewRow rowFacture in dataGridViewFactures.SelectedRows)
-            {
-                if (rowFacture.Index == tempMaxIndex)
-                {
-                    factures.RetirerFacture(int.Parse(rowFacture.Cells[0].Value.ToString()));
-                    tempMaxIndex--;
-                }
-            }*/
-
-
-            /*for (int i = dataGridViewFactures.SelectedRows.Count - 1; i >= 0; i--)
-            {
-                Console.WriteLine("i : " + i);
-                Console.WriteLine("dataGridViewFactures.SelectedRows[i].Index : " + dataGridViewFactures.SelectedRows[i].Index);
-                factures.RetirerFacture(int.Parse(dataGridViewFactures.SelectedRows[i].Cells[0].Value.ToString()));
-            }*/
-
-
-            // NE PAS EFFACER - PARTIE À JOE À CONTINUER...
         }
 
         private void buttonRetirerArticle_Click(object sender, EventArgs e)
