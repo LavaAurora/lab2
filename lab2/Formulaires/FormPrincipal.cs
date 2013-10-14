@@ -13,6 +13,8 @@ namespace lab2
     public partial class FormPrincipal : Form
     {
         private Factures factures;
+        private List<int> listeFactureIdSelectionnees = new List<int>();
+
         public FormPrincipal(Factures factures)
         {
             InitializeComponent();
@@ -100,8 +102,10 @@ namespace lab2
         private void dataGridViewFactures_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dataGridViewArticles.Rows.Clear();
+            listeFactureIdSelectionnees.Clear();
             foreach (DataGridViewRow rowFacture in dataGridViewFactures.SelectedRows)
             {
+                listeFactureIdSelectionnees.Add(int.Parse(rowFacture.Cells[0].Value.ToString()));
                 foreach (Article article in factures.ChercherFacture(int.Parse(rowFacture.Cells[0].Value.ToString())).Articles)
                 {
                     bindingSourceArticles.Add(article);
@@ -136,15 +140,47 @@ namespace lab2
             }
             bindingSourceFactures.ResumeBinding();
             InitialiserDataGridViewFactures();
+            dataGridViewArticles.Rows.Clear();
         }
 
         private void buttonRetirerArticle_Click(object sender, EventArgs e)
         {
-            for (int i = dataGridViewArticles.SelectedRows.Count - 1; i >= 0; i--)
+            bindingSourceArticles.SuspendBinding();
+            List<int> listeIdArticle = new List<int>();
+            foreach (DataGridViewRow row in dataGridViewArticles.SelectedRows)
             {
-                //factures.ChercherFacture(
-                //factures.RetirerFacture(int.Parse(dataGridViewFactures.SelectedRows[i].Cells[0].Value.ToString()));
+                listeIdArticle.Add(int.Parse(row.Cells[0].Value.ToString()));
+                row.Visible = false;
             }
+            foreach (int articleId in listeIdArticle)
+            {
+                factures.ChercherFacture(TrouverFactureIdDeArticle(articleId)).RetirerArticle(articleId);
+            }
+            bindingSourceArticles.ResumeBinding();
+            dataGridViewArticles.Refresh();
+
+            InitialiserDataGridViewFactures();
+        }
+
+        private int TrouverFactureIdDeArticle(int articleId)
+        {
+            Article tempArticle;
+            foreach (int factureId in listeFactureIdSelectionnees)
+            {
+                Console.WriteLine("factureId : " + factureId);
+                foreach (Facture facture in factures.ListeFactures)
+                {
+                    if (facture.IdFacture == factureId)
+                    {
+                        tempArticle = facture.ChercherArticle(articleId);
+                        if (tempArticle != null)
+                        {
+                            return factureId;
+                        }
+                    }
+                }
+            }
+            return 0;
         }
 
     }
