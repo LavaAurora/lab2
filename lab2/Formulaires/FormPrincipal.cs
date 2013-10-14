@@ -125,9 +125,14 @@ namespace lab2
         private void btnRetirerFacture_Click(object sender, EventArgs e)
         {
             bindingSourceFactures.SuspendBinding();
+            List<int> listeIdFacture = new List<int>();
             foreach (DataGridViewRow row in dataGridViewFactures.SelectedRows)
             {
-                factures.RetirerFacture(int.Parse(row.Cells[0].Value.ToString()));
+                listeIdFacture.Add(int.Parse(row.Cells[0].Value.ToString()));
+            }
+            foreach (int factureId in listeIdFacture)
+            {
+                factures.RetirerFacture(factureId);
             }
             bindingSourceFactures.ResumeBinding();
             InitialiserDataGridViewFactures();
