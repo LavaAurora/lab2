@@ -7,6 +7,10 @@ namespace lab2
 {
     public class FactureCable : Facture
     {
+        
+        //Constructeur de sérialisation
+        private FactureCable() { }
+
         //Nouvelle facture (ne provenant pas d'un fichier)
         public FactureCable(string description)
         {

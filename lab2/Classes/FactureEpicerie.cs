@@ -8,6 +8,8 @@ namespace lab2
 {
     public class FactureEpicerie : Facture
     {
+        //Constructeur de sérialisation
+        private FactureEpicerie() { }
 
         //Nouvelle facture (ne provenant pas d'un fichier)
         public FactureEpicerie(string description)

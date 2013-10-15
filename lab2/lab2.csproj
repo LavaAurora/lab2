@@ -51,6 +51,7 @@
     <Compile Include="Classes\FactureCable.cs" />
     <Compile Include="Classes\FactureEpicerie.cs" />
     <Compile Include="Classes\Factures.cs" />
+    <Compile Include="Classes\FacturesSerialisateur.cs" />
     <Compile Include="Classes\FactureUniversite.cs" />
     <Compile Include="Formulaires\FormAjouterArticle.cs">
       <SubType>Form</SubType>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
+
 namespace lab2
 {
     public partial class FormPrincipal : Form
@@ -87,10 +88,7 @@ namespace lab2
             }
         }
 
-        private void menuSauvegarder_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnManip_Click(object sender, EventArgs e)
         {
@@ -222,6 +220,52 @@ namespace lab2
                 Formulaires.FormModifierArticle formModifierArticle = new Formulaires.FormModifierArticle(factures.ChercherFacture(TrouverFactureIdDeArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))).ChercherArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString())));
                 formModifierArticle.ShowDialog();
                 dataGridViewFactures_RowHeaderMouseClick(null, null);
+            }
+        }
+
+        private void menuSauvegarder_Click(object sender, EventArgs e)
+        {
+
+            if (Classes.FacturesSerialisateur.Serialiser(this.factures))
+            {
+                MessageBox.Show("Sauvegarde effectuée!");
+            }
+            else
+            {
+                MessageBox.Show("Une erreur s'est produite durant la sauvegarde!");
+            }
+
+            
+        }
+
+        private void menuCharger_Click(object sender, EventArgs e)
+        {
+            Factures nouvellesFactures;
+
+            DialogResult resultat = MessageBox.Show("Le chargement écrasera les données non sauvegardées. Voulez-vous quand même charger les données",
+                "Charger des données", MessageBoxButtons.YesNo);
+
+
+            if (resultat == DialogResult.Yes)
+            {
+                nouvellesFactures = Classes.FacturesSerialisateur.Deserialiser();
+
+                //Si erreur lors de la désérialisation
+                if (nouvellesFactures == null)
+                {
+                    MessageBox.Show("Impossible de charger les données!");
+                }
+                else
+                {
+
+                    //Écrase l'ancienne liste de factures
+                    this.factures = nouvellesFactures;
+
+                    //Réaffiche les données
+                    InitialiserDataGridViewFactures();
+                    InitialiserDataGridViewArticles();
+                }
+                
             }
         }
 

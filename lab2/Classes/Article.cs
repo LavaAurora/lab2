@@ -22,9 +22,11 @@ namespace lab2
         public int IdArticle
         {
             get { return this.idArticle; }
+            set { this.idArticle = value; }    //Pour sérialisation uniquement
 
         }
 
+       
         public string Description
         {
             get { return this.description; }
@@ -48,6 +50,9 @@ namespace lab2
             get { return this.typeTaxe; }
             set { this.typeTaxe = value; }
         }
+
+        //Constructeur de sérialisation
+        private Article() {}
 
         //Crée un article (ne provenant pas d'un fichier)
         public Article(string description, int quantite, decimal prixUnitaire, string typeTaxe)

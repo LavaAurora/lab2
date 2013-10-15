@@ -101,20 +101,21 @@
             // menuSauvegarder
             // 
             this.menuSauvegarder.Name = "menuSauvegarder";
-            this.menuSauvegarder.Size = new System.Drawing.Size(139, 22);
+            this.menuSauvegarder.Size = new System.Drawing.Size(152, 22);
             this.menuSauvegarder.Text = "Sauvegarder";
             this.menuSauvegarder.Click += new System.EventHandler(this.menuSauvegarder_Click);
             // 
             // menuCharger
             // 
             this.menuCharger.Name = "menuCharger";
-            this.menuCharger.Size = new System.Drawing.Size(139, 22);
+            this.menuCharger.Size = new System.Drawing.Size(152, 22);
             this.menuCharger.Text = "Charger";
+            this.menuCharger.Click += new System.EventHandler(this.menuCharger_Click);
             // 
             // menuQuitter
             // 
             this.menuQuitter.Name = "menuQuitter";
-            this.menuQuitter.Size = new System.Drawing.Size(139, 22);
+            this.menuQuitter.Size = new System.Drawing.Size(152, 22);
             this.menuQuitter.Text = "Quitter";
             this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
             // 

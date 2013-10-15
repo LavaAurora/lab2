@@ -107,11 +107,8 @@ namespace lab2
 
             }
             
-
-            //Console.WriteLine("Il y a " + factures.ListeFactures.Count + " factures au total!");
-
             /* 
-             * FIN DES DONNÉES TEMPORAIRES 
+             * FIN DES DONNÉES TEMPORAIRES
              */
 
 

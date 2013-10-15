@@ -6,6 +6,12 @@ using System.Text;
 
 namespace lab2
 {
+    
+    [Serializable]
+    [System.Xml.Serialization.XmlInclude(typeof(FactureCable))]
+    [System.Xml.Serialization.XmlInclude(typeof(FactureEpicerie))]
+    [System.Xml.Serialization.XmlInclude(typeof(FactureUniversite))]
+
     public abstract class Facture : IArticle
     {
         private int idFacture;                                  //Identifiant de la facture
@@ -16,7 +22,7 @@ namespace lab2
         public int IdFacture
         {
             get { return this.idFacture; }
-            set { this.idFacture = value; }
+            set { this.idFacture = value; }     //Pour sérialisation uniquement
         }
 
         public List<Article> Articles
@@ -30,6 +36,8 @@ namespace lab2
             get { return this.description; }
             set { this.description = value; }
         }
+
+        
 
         //Initialisation pour une nouvelle facture
         public void InitialisationFacture(string description)
@@ -105,11 +113,17 @@ namespace lab2
         }
         public void Sauvegarder()
         {
-            //TODO : créer cette méthode
+            //À noter, cette méthode à été déplacée à un niveau plus global (formulaire 
+            //"FormPrincipal") pour permettre de sauvegarder l'ensemble des factures de 
+            //l'application. La sauvegarde des factures a également été déléguée à la classe 
+            //"FacturesSerialisateur".
         }
         public void Charger()
         {
-            //TODO : créer cette méthode
+            //À noter, cette méthode à été déplacée à un niveau plus global (formulaire 
+            //"FormPrincipal") pour permettre de charger l'ensemble des factures de 
+            //l'application. Le chargement des factures a également été déléguée à la classe 
+            //"FacturesSerialisateur".
         }
 
         //Retourne le total d'argent de tous les articles de la facture
@@ -154,12 +168,11 @@ namespace lab2
                 //si article existe dans la table, additionner la quantité
                 if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
                     (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite += a.Quantite;
-                // sinon, ajouter le nouvel article
+                }
                 else
                     tempTable.Add(a.Description + a.PrixUnitaire.ToString(), new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe));
             }
 
-            // convertir le Hashtable en tableau
             Article[] t = new Article[tempTable.Values.Count];
             tempTable.Values.CopyTo(t, 0);
 
@@ -182,7 +195,7 @@ namespace lab2
 
             foreach (Article a in f2.Articles)
             {
-                //si article existe dans la table
+                //si article existe, soustraire la quantité
                 if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
                 {
                     // si la différence entre les quantités est supérieure à 0, ajouter à la table 

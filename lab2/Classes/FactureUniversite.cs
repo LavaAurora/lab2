@@ -5,8 +5,11 @@ using System.Text;
 
 namespace lab2
 {
-    class FactureUniversite : Facture
+    public class FactureUniversite : Facture
     {
+        //Constructeur de sérialisation
+        private FactureUniversite() {}
+
          //Nouvelle facture (ne provenant pas d'un fichier)
         public FactureUniversite(string description)
         {

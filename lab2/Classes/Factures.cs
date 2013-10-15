@@ -9,6 +9,7 @@ namespace lab2
      * Classe qui représente un groupe de factures
      * 
      */
+
     public class Factures
     {
         private List<Facture> listeFactures = new List<Facture>();
@@ -19,6 +20,7 @@ namespace lab2
             set { this.listeFactures = value; }
         }
 
+        
         
         //typeDeFacture doit être le nom de la classe qu'on veux utiliser :
         //  * FactureCable
