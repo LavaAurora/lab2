@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuFichier = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSauvegarder = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,8 +57,8 @@
             this.groupBoxArticles = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxTotalArticles = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonAjouterArticle = new System.Windows.Forms.Button();
+            this.buttonModifierArticle = new System.Windows.Forms.Button();
             this.buttonRetirerArticle = new System.Windows.Forms.Button();
             this.dataGridViewArticles = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -195,6 +201,14 @@
             this.dataGridViewFactures.AllowUserToDeleteRows = false;
             this.dataGridViewFactures.AutoGenerateColumns = false;
             this.dataGridViewFactures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewFactures.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewFactures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFactures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cNoFacture,
@@ -202,9 +216,25 @@
             this.cNbArticle,
             this.cTotal});
             this.dataGridViewFactures.DataSource = this.bindingSourceFactures;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewFactures.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewFactures.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewFactures.Name = "dataGridViewFactures";
             this.dataGridViewFactures.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewFactures.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewFactures.Size = new System.Drawing.Size(919, 157);
             this.dataGridViewFactures.TabIndex = 0;
             this.dataGridViewFactures.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewFactures_RowHeaderMouseClick);
@@ -237,8 +267,8 @@
             // 
             this.groupBoxArticles.Controls.Add(this.label1);
             this.groupBoxArticles.Controls.Add(this.textBoxTotalArticles);
-            this.groupBoxArticles.Controls.Add(this.button2);
-            this.groupBoxArticles.Controls.Add(this.button3);
+            this.groupBoxArticles.Controls.Add(this.buttonAjouterArticle);
+            this.groupBoxArticles.Controls.Add(this.buttonModifierArticle);
             this.groupBoxArticles.Controls.Add(this.buttonRetirerArticle);
             this.groupBoxArticles.Controls.Add(this.dataGridViewArticles);
             this.groupBoxArticles.Location = new System.Drawing.Point(12, 242);
@@ -265,23 +295,25 @@
             this.textBoxTotalArticles.Size = new System.Drawing.Size(100, 20);
             this.textBoxTotalArticles.TabIndex = 4;
             // 
-            // button2
+            // buttonAjouterArticle
             // 
-            this.button2.Location = new System.Drawing.Point(168, 179);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Ajouter";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonAjouterArticle.Location = new System.Drawing.Point(168, 179);
+            this.buttonAjouterArticle.Name = "buttonAjouterArticle";
+            this.buttonAjouterArticle.Size = new System.Drawing.Size(75, 23);
+            this.buttonAjouterArticle.TabIndex = 3;
+            this.buttonAjouterArticle.Text = "Ajouter";
+            this.buttonAjouterArticle.UseVisualStyleBackColor = true;
+            this.buttonAjouterArticle.Click += new System.EventHandler(this.buttonAjouterArticle_Click_1);
             // 
-            // button3
+            // buttonModifierArticle
             // 
-            this.button3.Location = new System.Drawing.Point(87, 179);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Modifier";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonModifierArticle.Location = new System.Drawing.Point(87, 179);
+            this.buttonModifierArticle.Name = "buttonModifierArticle";
+            this.buttonModifierArticle.Size = new System.Drawing.Size(75, 23);
+            this.buttonModifierArticle.TabIndex = 2;
+            this.buttonModifierArticle.Text = "Modifier";
+            this.buttonModifierArticle.UseVisualStyleBackColor = true;
+            this.buttonModifierArticle.Click += new System.EventHandler(this.buttonModiferArticle_Click_1);
             // 
             // buttonRetirerArticle
             // 
@@ -299,6 +331,14 @@
             this.dataGridViewArticles.AllowUserToDeleteRows = false;
             this.dataGridViewArticles.AutoGenerateColumns = false;
             this.dataGridViewArticles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewArticles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewArticles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewArticles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -308,10 +348,26 @@
             this.cTypeTaxe,
             this.dataGridViewTextBoxColumn3});
             this.dataGridViewArticles.DataSource = this.bindingSourceArticles;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewArticles.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewArticles.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewArticles.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewArticles.Name = "dataGridViewArticles";
             this.dataGridViewArticles.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewArticles.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewArticles.Size = new System.Drawing.Size(919, 157);
             this.dataGridViewArticles.TabIndex = 0;
             // 
@@ -364,7 +420,6 @@
             this.MainMenuStrip = this.menu;
             this.Name = "FormPrincipal";
             this.Text = "Gestion de factures";
-            this.Activated += new System.EventHandler(this.FormPrincipal_Activated);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -399,8 +454,8 @@
         private System.Windows.Forms.GroupBox groupBoxArticles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTotalArticles;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonAjouterArticle;
+        private System.Windows.Forms.Button buttonModifierArticle;
         private System.Windows.Forms.Button buttonRetirerArticle;
         private System.Windows.Forms.DataGridView dataGridViewArticles;
         private System.Windows.Forms.BindingSource bindingSourceFactures;

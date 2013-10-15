@@ -52,6 +52,12 @@
     <Compile Include="Classes\FactureEpicerie.cs" />
     <Compile Include="Classes\Factures.cs" />
     <Compile Include="Classes\FactureUniversite.cs" />
+    <Compile Include="Formulaires\FormAjouterArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FormAjouterArticle.Designer.cs">
+      <DependentUpon>FormAjouterArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulaires\FormAjouterFacture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="Formulaires\FormManipulationFactures.Designer.cs">
       <DependentUpon>FormManipulationFactures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FormModifierArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FormModifierArticle.Designer.cs">
+      <DependentUpon>FormModifierArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulaires\FormModifierFacture.cs">
       <SubType>Form</SubType>
@@ -79,11 +91,17 @@
     <Compile Include="Classes\IArticle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formulaires\FormAjouterArticle.resx">
+      <DependentUpon>FormAjouterArticle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formulaires\FormAjouterFacture.resx">
       <DependentUpon>FormAjouterFacture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulaires\FormManipulationFactures.resx">
       <DependentUpon>FormManipulationFactures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulaires\FormModifierArticle.resx">
+      <DependentUpon>FormModifierArticle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulaires\FormModifierFacture.resx">
       <DependentUpon>FormModifierFacture.cs</DependentUpon>

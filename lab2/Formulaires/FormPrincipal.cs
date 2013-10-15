@@ -96,6 +96,7 @@ namespace lab2
         {
             Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures(this.factures);
             f.ShowDialog();
+            InitialiserDataGridViewFactures();
         }
 
         private void dataGridViewFactures_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -118,11 +119,6 @@ namespace lab2
                 }
             }
             CalculerTotalArticles();
-        }
-
-        private void FormPrincipal_Activated(object sender, EventArgs e)
-        {
-            InitialiserDataGridViewFactures();
         }
 
         private void btnRetirerFacture_Click(object sender, EventArgs e)
@@ -159,7 +155,6 @@ namespace lab2
             }
             bindingSourceArticles.ResumeBinding();
             dataGridViewArticles.Refresh();
-            //InitialiserDataGridViewFactures();
             CalculerTotalArticles();
         }
 
@@ -168,7 +163,6 @@ namespace lab2
             Article tempArticle;
             foreach (int factureId in listeFactureIdSelectionnees)
             {
-                Console.WriteLine("factureId : " + factureId);
                 foreach (Facture facture in factures.ListeFactures)
                 {
                     if (facture.IdFacture == factureId)
@@ -198,6 +192,7 @@ namespace lab2
         {
             Formulaires.FormAjouterFacture formAjouterFacture = new Formulaires.FormAjouterFacture(factures);
             formAjouterFacture.ShowDialog();
+            InitialiserDataGridViewFactures();
         }
 
         private void btnModifierFacture_Click(object sender, EventArgs e)
@@ -213,7 +208,35 @@ namespace lab2
                     factures); //Liste de toutes les factures
                 formModifierFacture.ShowDialog();
             }
+            InitialiserDataGridViewFactures();
         }
 
+        private void buttonModiferArticle_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewArticles.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Veuillez sélectionner seulement un article.");
+            }
+            else
+            {
+                Formulaires.FormModifierArticle formModifierArticle = new Formulaires.FormModifierArticle(factures.ChercherFacture(TrouverFactureIdDeArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))).ChercherArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString())));
+                formModifierArticle.ShowDialog();
+                dataGridViewFactures_RowHeaderMouseClick(null, null);
+            }
+        }
+
+        private void buttonAjouterArticle_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewFactures.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Veuillez sélectionner seulement une facture.");
+            }
+            else
+            {
+                Formulaires.FormAjouterArticle formAjouterArticle = new Formulaires.FormAjouterArticle(factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString())));
+                formAjouterArticle.ShowDialog();
+                dataGridViewFactures_RowHeaderMouseClick(null, null);
+            }
+        }
     }
 }
