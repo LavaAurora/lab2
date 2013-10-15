@@ -167,6 +167,7 @@ namespace lab2
             {
                 //si article existe dans la table, additionner la quantité
                 if (tempTable.Contains(a.Description + a.PrixUnitaire.ToString()))
+                {
                     (tempTable[a.Description + a.PrixUnitaire.ToString()] as Article).Quantite += a.Quantite;
                 }
                 else
