@@ -16,6 +16,7 @@ namespace lab2
         public int IdFacture
         {
             get { return this.idFacture; }
+            set { this.idFacture = value; }
         }
 
         public List<Article> Articles

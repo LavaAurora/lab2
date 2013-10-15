@@ -447,6 +447,7 @@
             this.Name = "FormManipulationFactures";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manipulation de factures";
+            this.Load += new System.EventHandler(this.FormManipulationFactures_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

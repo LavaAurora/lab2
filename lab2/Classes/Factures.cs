@@ -28,7 +28,6 @@ namespace lab2
         //TODO : utiliser le constructeur de copie
         public void AjouterFacture(string typeDeFacture, string description)
         {
-
             if(typeDeFacture == "FactureCable")
             {
                 listeFactures.Add(new FactureCable(description));

@@ -95,7 +95,6 @@ namespace lab2
         private void btnManip_Click(object sender, EventArgs e)
         {
             Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures(this.factures);
-
             f.ShowDialog();
         }
 
@@ -123,7 +122,6 @@ namespace lab2
 
         private void FormPrincipal_Activated(object sender, EventArgs e)
         {
-            this.InitialiserDataGridViewFactures();
             InitialiserDataGridViewFactures();
         }
 
@@ -161,7 +159,7 @@ namespace lab2
             }
             bindingSourceArticles.ResumeBinding();
             dataGridViewArticles.Refresh();
-            InitialiserDataGridViewFactures();
+            //InitialiserDataGridViewFactures();
             CalculerTotalArticles();
         }
 
@@ -194,6 +192,27 @@ namespace lab2
                 tempTotalArticle += decimal.Parse(row.Cells[5].Value.ToString());
             }
             textBoxTotalArticles.Text = tempTotalArticle.ToString();
+        }
+
+        private void btnAjouterFacture_Click(object sender, EventArgs e)
+        {
+            Formulaires.FormAjouterFacture formAjouterFacture = new Formulaires.FormAjouterFacture(factures);
+            formAjouterFacture.ShowDialog();
+        }
+
+        private void btnModifierFacture_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFactures.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Vous devez sélectionner seulement une facture pour en faire la modification.");
+            }
+            else
+            {
+                Formulaires.FormModifierFacture formModifierFacture = new Formulaires.FormModifierFacture(  //Ouvrir la fenêtre de modification d'une facture
+                    factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString())),    //La facture à modifier
+                    factures); //Liste de toutes les factures
+                formModifierFacture.ShowDialog();
+            }
         }
 
     }

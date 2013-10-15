@@ -167,6 +167,7 @@
             this.btnAjouterFacture.TabIndex = 3;
             this.btnAjouterFacture.Text = "Ajouter";
             this.btnAjouterFacture.UseVisualStyleBackColor = true;
+            this.btnAjouterFacture.Click += new System.EventHandler(this.btnAjouterFacture_Click);
             // 
             // btnModifierFacture
             // 
@@ -176,6 +177,7 @@
             this.btnModifierFacture.TabIndex = 2;
             this.btnModifierFacture.Text = "Modifier";
             this.btnModifierFacture.UseVisualStyleBackColor = true;
+            this.btnModifierFacture.Click += new System.EventHandler(this.btnModifierFacture_Click);
             // 
             // btnRetirerFacture
             // 
