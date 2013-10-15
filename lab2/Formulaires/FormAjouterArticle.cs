@@ -18,6 +18,8 @@ namespace lab2.Formulaires
             InitializeComponent();
 
             this.facture = facture;
+
+            comboBoxTypeDeTaxe.SelectedIndex = 0;
         }
 
         private void labelDescription_Click(object sender, EventArgs e)
@@ -47,7 +49,11 @@ namespace lab2.Formulaires
             }
             else
             {
-                facture.CreerArticle(textBoxDescription.Text, int.Parse(numericUpDownQuantite.Value.ToString()), numericUpDownPrixUnitaire.Value, comboBoxTypeDeTaxe.SelectedItem.ToString());
+                facture.CreerArticle(textBoxDescription.Text, 
+                    int.Parse(numericUpDownQuantite.Value.ToString()), 
+                    numericUpDownPrixUnitaire.Value, 
+                    comboBoxTypeDeTaxe.SelectedItem.ToString());
+
                 this.Close();
             }
         }
