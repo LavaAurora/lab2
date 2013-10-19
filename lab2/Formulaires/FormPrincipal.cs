@@ -8,19 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-
 namespace lab2
 {
     public partial class FormPrincipal : Form
     {
         private Factures factures;
+
+        // Permet de garder en mémoire la liste des factures sélectionnées dans le DataGridViewFacture
         private List<int> listeFactureIdSelectionnees = new List<int>();
 
         public FormPrincipal(Factures factures)
         {
             InitializeComponent();
 
-            //Référence à la classe de factures (permet de passer les factures entre les forms)
+            // Référence à la classe de factures (permet de passer les factures entre les forms)
             this.factures = factures;
         }
 
@@ -30,6 +31,7 @@ namespace lab2
             InitialiserDataGridViewArticles();
         }
 
+        // Initialise et rafraîchit le tableau de données des factures
         public void InitialiserDataGridViewFactures()
         {
             bindingSourceFactures.DataSource = factures.ListeFactures;
@@ -45,6 +47,7 @@ namespace lab2
             }
         }
 
+        // Initialise et rafraîchit le tableau de données des artciles
         private void InitialiserDataGridViewArticles()
         {
             dataGridViewArticles.Columns[0].DataPropertyName = "IdArticle";
@@ -56,6 +59,7 @@ namespace lab2
             bindingSourceArticles.ResetBindings(false);
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Aide" du MenuStrip, le fichier d'aide s'ouvre
         private void rEADMEToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -69,18 +73,18 @@ namespace lab2
             }
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Quitter" du MenuStrip, le programme se termine
         private void menuQuitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Équipe" du MenuStrip, les membres de l'équipe sont affichés
         private void nomsÉquipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 Process.Start(@"..\..\NomsEquipe.txt");
-
             }
             catch (Exception ex)
             {
@@ -88,8 +92,8 @@ namespace lab2
             }
         }
 
-        
-
+        // Lorsque l'utilisateur clique sur le bouton "Manipulation de factures" au bas du tableau des factures,
+        // la fenêtre "Manipulation des factures" s'ouvre.
         private void btnManip_Click(object sender, EventArgs e)
         {
             Formulaires.FormManipulationFactures f = new Formulaires.FormManipulationFactures(this.factures);
@@ -97,6 +101,8 @@ namespace lab2
             InitialiserDataGridViewFactures();
         }
 
+        // Lorsque l'utilisateur clique sur la marge (de gauche) d'une rangé dans le tableau des facture, une rangé est sélectionné.
+        // Se qui a pour effet de sélectionner une facture et d'afficher les articles qui y sont associés
         private void dataGridViewFactures_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dataGridViewArticles.Rows.Clear();
@@ -119,6 +125,8 @@ namespace lab2
             CalculerTotalArticles();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Retirer", en dessous des factures,
+        // cette facture est retiré de la liste des factures
         private void btnRetirerFacture_Click(object sender, EventArgs e)
         {
             bindingSourceFactures.SuspendBinding();
@@ -137,6 +145,8 @@ namespace lab2
             CalculerTotalArticles();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Retirer", en dessous des articles,
+        // cette article est retiré de la liste d'articles associée à la facture préalablement sélectionnée
         private void buttonRetirerArticle_Click(object sender, EventArgs e)
         {
             bindingSourceArticles.SuspendBinding();
@@ -156,6 +166,8 @@ namespace lab2
             CalculerTotalArticles();
         }
 
+        // Méthode servant à trouver la facture dans laquel se retrouve un article
+        // (à partir du Id d'un article)
         private int TrouverFactureIdDeArticle(int articleId)
         {
             Article tempArticle;
@@ -176,6 +188,8 @@ namespace lab2
             return 0;
         }
 
+        // Calcul le total (en argent $) pour tous les articles d'une ou de plusieurs
+        // factures. Ce total apparait en bas à droite de la fenêtre.
         private void CalculerTotalArticles()
         {
             decimal tempTotalArticle = 0;
@@ -186,6 +200,8 @@ namespace lab2
             textBoxTotalArticles.Text = tempTotalArticle.ToString();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Ajouter", en bas des factures,
+        // la fenêtre FormAjouterFacture sera ouverte, permettant ainsi d'ajouter une facture
         private void btnAjouterFacture_Click(object sender, EventArgs e)
         {
             Formulaires.FormAjouterFacture formAjouterFacture = new Formulaires.FormAjouterFacture(factures);
@@ -193,6 +209,8 @@ namespace lab2
             InitialiserDataGridViewFactures();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Modifier", en bas de factures,
+        // la fenêtre FormModifierFacture sera ouverte, permettant ainsi de modifier une facture
         private void btnModifierFacture_Click(object sender, EventArgs e)
         {
             if (dataGridViewFactures.SelectedRows.Count != 1)
@@ -201,14 +219,16 @@ namespace lab2
             }
             else
             {
-                Formulaires.FormModifierFacture formModifierFacture = new Formulaires.FormModifierFacture(  //Ouvrir la fenêtre de modification d'une facture
-                    factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString())),    //La facture à modifier
+                Formulaires.FormModifierFacture formModifierFacture = new Formulaires.FormModifierFacture(  // Créer la fenêtre de modification d'une facture
+                    factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString())), //La facture à modifier
                     factures); //Liste de toutes les factures
                 formModifierFacture.ShowDialog();
             }
             InitialiserDataGridViewFactures();
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Modifier", en bas des articles,
+        // la fenêtre FormModifierArticle sera ouverte, permettant ainsi de modifier un article
         private void buttonModiferArticle_Click_1(object sender, EventArgs e)
         {
             if (dataGridViewArticles.SelectedRows.Count != 1)
@@ -217,15 +237,19 @@ namespace lab2
             }
             else
             {
-                Formulaires.FormModifierArticle formModifierArticle = new Formulaires.FormModifierArticle(factures.ChercherFacture(TrouverFactureIdDeArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))).ChercherArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString())));
+                Formulaires.FormModifierArticle formModifierArticle = new Formulaires.FormModifierArticle( // Créer la fenêtre de modification d'un article
+                    factures.ChercherFacture(TrouverFactureIdDeArticle( // Chercher la facture à travers la liste des factures
+                    int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))). // Lui passer le Id de l'article sélectionné
+                    ChercherArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))); // Chercher l'article dans la facture trouvée
                 formModifierArticle.ShowDialog();
                 dataGridViewFactures_RowHeaderMouseClick(null, null);
             }
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Sauvegarder" du MenuStrip, les factures et articles sont sauvegardé
+        // dans un fichier externe. Il sera alors possible de les charger.
         private void menuSauvegarder_Click(object sender, EventArgs e)
         {
-
             if (Classes.FacturesSerialisateur.Serialiser(this.factures))
             {
                 MessageBox.Show("Sauvegarde effectuée!");
@@ -234,17 +258,16 @@ namespace lab2
             {
                 MessageBox.Show("Une erreur s'est produite durant la sauvegarde!");
             }
-
-            
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Charger" du MenuStrip, les factures et articles sont chargés
+        // dans le programme en cours. Les anciennes données sont écrasées
         private void menuCharger_Click(object sender, EventArgs e)
         {
             Factures nouvellesFactures;
 
             DialogResult resultat = MessageBox.Show("Le chargement écrasera les données non sauvegardées. Voulez-vous quand même charger les données",
                 "Charger des données", MessageBoxButtons.YesNo);
-
 
             if (resultat == DialogResult.Yes)
             {
@@ -265,10 +288,11 @@ namespace lab2
                     InitialiserDataGridViewFactures();
                     InitialiserDataGridViewArticles();
                 }
-                
             }
         }
 
+        // Lorsque l'utilisateur clique sur le bouton "Ajouter", en bas des articles,
+        // la fenêtre FormAjouterArticle sera ouverte, permettant ainsi d'ajouter un article
         private void buttonAjouterArticle_Click_1(object sender, EventArgs e)
         {
             if (dataGridViewFactures.SelectedRows.Count != 1)
@@ -277,7 +301,8 @@ namespace lab2
             }
             else
             {
-                Formulaires.FormAjouterArticle formAjouterArticle = new Formulaires.FormAjouterArticle(factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString())));
+                Formulaires.FormAjouterArticle formAjouterArticle = new Formulaires.FormAjouterArticle( // Crée la fenêtre d'ajout d'un article
+                    factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString()))); // Passe la facture sélectionnée en paramètre
                 formAjouterArticle.ShowDialog();
                 dataGridViewFactures_RowHeaderMouseClick(null, null);
             }

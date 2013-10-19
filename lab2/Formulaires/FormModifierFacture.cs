@@ -13,7 +13,6 @@ namespace lab2.Formulaires
     {
         private Facture facture;
         private Factures factures;
-
         private Dictionary<string, string> dcTypeFacture = new Dictionary<string, string>();
 
         public FormModifierFacture(Facture facture, Factures factures)
@@ -23,15 +22,19 @@ namespace lab2.Formulaires
             this.facture = facture;
             this.factures = factures;
 
-            // initialisation du dictionnaire de type de facture
+            // Initialisation du dictionnaire de type de facture
             dcTypeFacture.Add("", "");
             dcTypeFacture.Add("FactureCable", "Câble");
             dcTypeFacture.Add("FactureEpicerie", "Épicerie");
             dcTypeFacture.Add("FactureUniversite", "Université");
+
+            // Association de la source de données du Combo Box "Type de facture" avec
+            // le dictionnaire de données
             comboBoxTypeDeFacture.DataSource = new BindingSource(dcTypeFacture, null);
             comboBoxTypeDeFacture.DisplayMember = "Value";
             comboBoxTypeDeFacture.ValueMember = "Key";
 
+            // Peupler le Combo Box "Type de facture" avec le bon type de facture préalablement choisi
             foreach (string factureType in dcTypeFacture.Keys)
             {
                 if (factureType == facture.GetType().Name)
@@ -52,6 +55,11 @@ namespace lab2.Formulaires
             this.Close();
         }
 
+
+        // Lorsque le bouton "Modifier" est cliqué, les informations de la facture préalablement sélectionné
+        // sont modifier avec les nouvelles informations inscrites dans les champs
+        // Prennez note qu'une vérification supplémentaire est fait pour vérifier si le type de facture choisi est différent
+        // de son ancien type. Si tel est le cas, l'ancienne facture est copiée (DEEP COPY) dans la nouvelle facture.
         private void buttonModifier_Click(object sender, EventArgs e)
         {
             if (comboBoxTypeDeFacture.SelectedValue.ToString() == "")

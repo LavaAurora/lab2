@@ -21,11 +21,14 @@ namespace lab2.Formulaires
 
             this.factures = factures;
 
-            // initialisation du dictionnaire de type de facture
+            // Initialisation du dictionnaire de type de facture
             dcTypeFacture.Add("", "");
             dcTypeFacture.Add("FactureCable", "Câble");
             dcTypeFacture.Add("FactureEpicerie", "Épicerie");
             dcTypeFacture.Add("FactureUniversite", "Université");
+
+            // Associer la source des données du Combo Box "Type de facture"
+            // au dictionnaire de données
             comboBoxTypeDeFacture.DataSource = new BindingSource(dcTypeFacture, null);
             comboBoxTypeDeFacture.DisplayMember = "Value";
             comboBoxTypeDeFacture.ValueMember = "Key";
@@ -41,6 +44,8 @@ namespace lab2.Formulaires
             this.Close();
         }
 
+        // Lorsque le bouton "Ajouter" est cliqué, une nouvelle facture est créé et
+        // ajouté dans la liste des factures
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             if (comboBoxTypeDeFacture.SelectedValue.ToString() == "")

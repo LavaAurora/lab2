@@ -19,6 +19,7 @@ namespace lab2.Formulaires
 
             this.article = article;
 
+            // Peupler les champs avec les informations correspondant de l'article à modifier
             textBoxDescription.Text = article.Description;
             numericUpDownQuantite.Value = article.Quantite;
             numericUpDownPrixUnitaire.Value = article.PrixUnitaire;
@@ -35,6 +36,8 @@ namespace lab2.Formulaires
             this.Close();
         }
 
+        // Lorsque le bouton "Modifier" est cliqué, les informations de l'article préalablement choisi sont
+        // modifié avec les nouvelles informations inscrites dans les champs
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             if (int.Parse(numericUpDownQuantite.Value.ToString()) <= 0)

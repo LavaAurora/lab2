@@ -37,6 +37,8 @@ namespace lab2.Formulaires
             this.Close();
         }
 
+        // Lorsque l'utilisateur appuie sur le bouton "Ajouter", cela ajoutera un article
+        // à la liste d'article de la facture dans laquel elle ce trouve.
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             if (int.Parse(numericUpDownQuantite.Value.ToString()) <= 0)
