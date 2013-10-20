@@ -16,7 +16,7 @@ namespace lab2
     {
         private int idFacture;                                  //Identifiant de la facture
         private static int compteurId = 5000;                   //Compteur de id
-        private List<Article> articles = new List<Article>();   //Articles liés à une facture
+        protected List<Article> articles = new List<Article>(); //Articles liés à une facture
         private string description;                             //Description de la facture
 
         public int IdFacture

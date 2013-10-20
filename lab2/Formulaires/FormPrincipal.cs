@@ -70,6 +70,7 @@ namespace lab2
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Le fichier d'aide est introuvable!");
+                Console.WriteLine(ex.Message);
             }
         }
 

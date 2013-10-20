@@ -20,46 +20,140 @@ namespace lab2
             set { this.listeFactures = value; }
         }
 
-        
-        
-        //typeDeFacture doit être le nom de la classe qu'on veux utiliser :
-        //  * FactureCable
-        //  * FactureEpicerie
-        //  * FactureUniversite
 
-        //TODO : utiliser le constructeur de copie
+
+        //Ajoute une facture. 
+        //NB : Pour les besoins du TP, une facture est créé en utilisant une copie d'une 
+        //     facture déjà existante de laquelle on efface les données.
+        //     Si une facture est créé d'un type qui n'est pas présent dans la liste des 
+        //     factures du système, la nouvelle facture sera créé sans utilisé le constructeur 
+        //     de copie.
         public void AjouterFacture(string typeDeFacture, string description)
         {
+            Facture factureAajouter;
+
             if(typeDeFacture == "FactureCable")
             {
-                listeFactures.Add(new FactureCable(description));
+                factureAajouter = CopierFacture(typeof(FactureCable));
+
+                //Nouvelle facture
+                if (factureAajouter == null)
+                {
+                    listeFactures.Add(new FactureCable(description));
+                }
+
+                //Nouvelle facture provenant d'une copie
+                else
+                {
+                    factureAajouter.Description = description;
+
+                    //Efface les articles de la facture
+                    factureAajouter.Articles.Clear();
+
+                    listeFactures.Add(factureAajouter);
+                }
+                
             }
             else if(typeDeFacture == "FactureEpicerie")
             {
-                listeFactures.Add(new FactureEpicerie(description));
+                factureAajouter = CopierFacture(typeof(FactureEpicerie));
+
+                //Nouvelle facture
+                if (factureAajouter == null)
+                {
+                    listeFactures.Add(new FactureEpicerie(description));
+                }
+
+                //Nouvelle facture provenant d'une copie
+                else
+                {
+                    factureAajouter.Description = description;
+
+                    //Efface les articles de la facture
+                    factureAajouter.Articles.Clear();
+                    listeFactures.Add(factureAajouter);
+                }
             }
             else if(typeDeFacture == "FactureUniversite")
             {
-                listeFactures.Add(new FactureUniversite(description));
+                factureAajouter = CopierFacture(typeof(FactureUniversite));
+
+                //Nouvelle facture
+                if (factureAajouter == null)
+                {
+                    listeFactures.Add(new FactureUniversite(description));
+                }
+
+                //Nouvelle facture provenant d'une copie
+                else
+                {
+                    factureAajouter.Description = description;
+
+                    //Efface les articles de la facture
+                    factureAajouter.Articles.Clear();
+
+                    listeFactures.Add(factureAajouter);
+                }
             }
         }
 
-        //TODO : utiliser le constructeur de copie
-        public void AjouterFacture(string typeDeFacture, int factureId, string description)
+        //Copie une facture de la liste pour un type donné.
+        //Les données de la copie (articles, etc.)
+        //seront effacés. 
+        //Retourne null si la facture ne peut^pas être copié
+        public Facture CopierFacture(Type typeDeFacture)
         {
-            if (typeDeFacture == "FactureCable")
+            Facture factureModele;
+            Facture nouvelleFacture;
+            
+            factureModele = RetournerPremiereFactureDunType(typeDeFacture);
+
+            //Si aucune facture n'existe pour le type voulue
+            if (factureModele == null)
             {
-                listeFactures.Add(new FactureCable(factureId, description));
+                return null;
             }
-            else if (typeDeFacture == "FactureEpicerie")
+
+
+            //Une facture existe avec le type voulue
+
+            if(typeDeFacture == typeof(FactureCable))
             {
-                listeFactures.Add(new FactureEpicerie(factureId, description));
+                nouvelleFacture = new FactureCable((FactureCable)factureModele);
             }
-            else if (typeDeFacture == "FactureUniversite")
+            else if(typeDeFacture == typeof(FactureEpicerie))
             {
-                listeFactures.Add(new FactureUniversite(factureId, description));
+                nouvelleFacture = new FactureEpicerie((FactureEpicerie)factureModele);
             }
+            else{
+                nouvelleFacture = new FactureUniversite((FactureUniversite)factureModele);
+            }
+           
+            
+
+
+            return nouvelleFacture;
         }
+
+        private Facture RetournerPremiereFactureDunType(Type typeDeFacture)
+        {
+            //Boucle la liste des factures de l'application et cherche la première
+            //qui correspond à une facture d'un certain type (passé en paramètre)
+
+            foreach(Facture f in this.listeFactures)
+            {
+                Console.WriteLine(f.GetType());
+                if(f.GetType() == typeDeFacture)
+                {
+                    return f;
+                }
+                    
+            }
+
+            return null;
+        }
+
+        
 
         //Retourne une facture en fonction de son identifiant
         //Si la facture n'est pas trouvée, la fonction retourne null

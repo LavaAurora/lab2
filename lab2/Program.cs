@@ -23,6 +23,7 @@ namespace lab2
             /* 
              * DONNÉES TEMPORAIRES 
              */
+
             Facture f;
 
             factures.AjouterFacture("FactureUniversite", "Frais scolarité");
@@ -53,7 +54,7 @@ namespace lab2
                 f.CreerArticle("Tomates", 2, 0.89m, "");
 
             }
-            
+       
 
             factures.AjouterFacture("FactureCable", "Internet");
             {
@@ -106,11 +107,11 @@ namespace lab2
                 f.CreerArticle("Poire", 5, 1.2m, "");
 
             }
+ 
             
             /* 
              * FIN DES DONNÉES TEMPORAIRES
              */
-
 
             Application.Run(new FormPrincipal(factures));
         }

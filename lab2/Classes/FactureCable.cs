@@ -17,11 +17,18 @@ namespace lab2
             base.InitialisationFacture(description);
         }
 
-
-        //Nouvelle facture (provenant d'un fichier)
-        public FactureCable(int idFacture, string description)
+        //Constructeur de copie
+        public FactureCable(FactureCable factureAcopier)
         {
-            base.InitialisationFacture(idFacture, description);
+            base.InitialisationFacture(factureAcopier.Description);
+
+            //Copie profonde des articles
+            foreach(Article a in factureAcopier.Articles)
+            {
+                this.Articles.Add(new Article(a.Description, a.Quantite, a.PrixUnitaire, a.TypeTaxe));
+            }
+
         }
+
     }
 }
