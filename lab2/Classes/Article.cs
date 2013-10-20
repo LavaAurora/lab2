@@ -116,7 +116,7 @@ namespace lab2
             }
 
 
-            return montant + totalTPS + totalTVQ;
+            return Decimal.Round(montant + totalTPS + totalTVQ, 2);
         }
 
         //Retourne le montant de la TPS (taxe uniquement)

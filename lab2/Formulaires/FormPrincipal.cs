@@ -198,6 +198,7 @@ namespace lab2
             {
                 tempTotalArticle += decimal.Parse(row.Cells[5].Value.ToString());
             }
+            tempTotalArticle = Decimal.Round(tempTotalArticle, 2);
             textBoxTotalArticles.Text = tempTotalArticle.ToString();
         }
 

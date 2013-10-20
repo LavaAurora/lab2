@@ -134,7 +134,7 @@ namespace lab2
             {
                 tempTotal += article.CalculerTotalAvecTaxes();
             }
-            return tempTotal;
+            return Decimal.Round(tempTotal, 2);
         }
 
         //Retourne un article en fonction de son identifiant
