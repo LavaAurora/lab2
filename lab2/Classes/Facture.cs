@@ -15,7 +15,12 @@ namespace lab2
     public abstract class Facture : IArticle
     {
         private int idFacture;                                  //Identifiant de la facture
-        private static int compteurId = 5000;                   //Compteur de id
+
+        //Ce compteur doit être publique, car après la désérialisation il faut
+        //pouvoir lui redonner une valeur.
+        public static int compteurId = 5000;                   //Compteur de id
+
+
         protected List<Article> articles = new List<Article>(); //Articles liés à une facture
         private string description;                             //Description de la facture
 
@@ -36,6 +41,8 @@ namespace lab2
             get { return this.description; }
             set { this.description = value; }
         }
+
+        
 
         
 

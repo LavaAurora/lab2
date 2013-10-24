@@ -135,6 +135,23 @@ namespace lab2
             return nouvelleFacture;
         }
 
+
+        //Ajuste le compteur de id
+        public void AjusterCompteurId()
+        {
+            int plusGrandIdCree = 5000;
+
+             foreach(Facture f in this.ListeFactures)
+             {
+                 if(f.IdFacture > plusGrandIdCree)
+                 {
+                     plusGrandIdCree = f.IdFacture;
+                 }
+             }
+
+            //Ajuste le compteur de id des factures
+            Facture.compteurId = plusGrandIdCree + 1;
+        }
         private Facture RetournerPremiereFactureDunType(Type typeDeFacture)
         {
             //Boucle la liste des factures de l'application et cherche la première

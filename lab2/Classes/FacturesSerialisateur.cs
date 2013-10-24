@@ -26,6 +26,7 @@ namespace lab2.Classes
                     xs.Serialize(wr, factures);
                 }
 
+                
                 return true;
             }
             catch
@@ -47,6 +48,8 @@ namespace lab2.Classes
                 {
                     factures = xs.Deserialize(rd) as Factures;
                 }
+
+                factures.AjusterCompteurId();
 
                 return factures;
             }

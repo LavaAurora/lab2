@@ -208,6 +208,7 @@ namespace lab2
         {
             Formulaires.FormAjouterFacture formAjouterFacture = new Formulaires.FormAjouterFacture(factures);
             formAjouterFacture.ShowDialog();
+
             InitialiserDataGridViewFactures();
         }
 
