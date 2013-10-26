@@ -24,6 +24,7 @@ namespace lab2.Formulaires
             numericUpDownQuantite.Value = article.Quantite;
             numericUpDownPrixUnitaire.Value = article.PrixUnitaire;
             comboBoxTypeDeTaxe.SelectedItem = article.TypeTaxe;
+            //if
         }
 
         private void FormModifierArticle_Load(object sender, EventArgs e)
@@ -40,9 +41,9 @@ namespace lab2.Formulaires
         // modifié avec les nouvelles informations inscrites dans les champs
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            if (int.Parse(numericUpDownQuantite.Value.ToString()) <= 0)
+            if (int.Parse(numericUpDownQuantite.Value.ToString()) < 0)
             {
-                MessageBox.Show("La quantité doit être plus grande que 0.");
+                MessageBox.Show("La quantité doit être un chiffre positif.");
             }
             else if (numericUpDownPrixUnitaire.Value < 0)
             {

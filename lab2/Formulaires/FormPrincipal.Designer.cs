@@ -87,6 +87,7 @@
             this.menu.Size = new System.Drawing.Size(949, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menu";
+            this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // menuFichier
             // 

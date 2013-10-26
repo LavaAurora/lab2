@@ -93,11 +93,6 @@
             0,
             0,
             0});
-            this.numericUpDownQuantite.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDownQuantite.Name = "numericUpDownQuantite";
             this.numericUpDownQuantite.Size = new System.Drawing.Size(56, 20);
             this.numericUpDownQuantite.TabIndex = 7;
@@ -146,7 +141,7 @@
             this.comboBoxTypeDeTaxe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTypeDeTaxe.FormattingEnabled = true;
             this.comboBoxTypeDeTaxe.Items.AddRange(new object[] {
-            " ",
+            "",
             "F",
             "P",
             "FP"});

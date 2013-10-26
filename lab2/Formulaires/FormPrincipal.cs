@@ -246,6 +246,7 @@ namespace lab2
                     ChercherArticle(int.Parse(dataGridViewArticles.SelectedRows[0].Cells[0].Value.ToString()))); // Chercher l'article dans la facture trouvée
                 formModifierArticle.ShowDialog();
                 dataGridViewFactures_RowHeaderMouseClick(null, null);
+                InitialiserDataGridViewFactures();
             }
         }
 
@@ -283,7 +284,6 @@ namespace lab2
                 }
                 else
                 {
-
                     //Écrase l'ancienne liste de factures
                     this.factures = nouvellesFactures;
 
@@ -308,7 +308,13 @@ namespace lab2
                     factures.ChercherFacture(int.Parse(dataGridViewFactures.SelectedRows[0].Cells[0].Value.ToString()))); // Passe la facture sélectionnée en paramètre
                 formAjouterArticle.ShowDialog();
                 dataGridViewFactures_RowHeaderMouseClick(null, null);
+                InitialiserDataGridViewFactures();
             }
+        }
+
+        private void menu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
