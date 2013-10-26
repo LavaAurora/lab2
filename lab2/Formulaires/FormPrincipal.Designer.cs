@@ -420,6 +420,7 @@
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "FormPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de factures";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.menu.ResumeLayout(false);

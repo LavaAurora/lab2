@@ -1,0 +1,3 @@
+- pas de refresh pour le tableau des factures après ajout d'article dans une facture
+- Dans FormModifierArticle.cs
+	-> erreur lorsque quantité = 0
