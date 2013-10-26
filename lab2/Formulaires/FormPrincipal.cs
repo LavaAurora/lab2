@@ -165,6 +165,7 @@ namespace lab2
             bindingSourceArticles.ResumeBinding();
             dataGridViewArticles.Refresh();
             CalculerTotalArticles();
+            InitialiserDataGridViewFactures();
         }
 
         // Méthode servant à trouver la facture dans laquel se retrouve un article
